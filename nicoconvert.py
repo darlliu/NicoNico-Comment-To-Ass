@@ -149,10 +149,20 @@ def realtime(oldtime):
     realt=str(hourt)+":"+str(minutest)+":"+str(secondst);
     return realt;
 def main():
-    text=textget();
-    data=sortxml(text);
-    data=dictsort(data,0);
-    datawrite(data);
+    for filename in os.listdir ('./'):
+        ext='';
+        try:
+            name,ext=filename.split('.');
+        except:
+            continue;
+        if ext!='xml':
+            continue;
+        else:
+            name=name;
+            text=textget(name+".xml");
+            data=sortxml(text);
+            data=dictsort(data,0);
+            datawrite(data,name+".ass");
 
 main();
 
