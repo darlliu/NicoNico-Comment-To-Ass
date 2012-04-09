@@ -43,7 +43,7 @@ Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     middle=u"Scroll,BiliBili1,0000,0000,0000,,{\\a6\\move(1150, ";
     end=u")\c&HFFFFFF\\fs25}";#event string backbone
     pos=1;
-    told=data[0][0];
+    told=data[0][0]-200;
     for i in range (0, len (data)):
         tnow=data[i][0];
         #grab current data in 10ms format
@@ -55,7 +55,7 @@ Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             told+=400;
             pos=1;
         fout.write(intro+unicode(t1)+u","+unicode(t2)+u","+middle+unicode(str(pos))+u", 0 , "+unicode(str(pos))+end);
-        pos+=50;
+        pos+=30;
         fout.write(text);
         fout.writelines(u'\n')
     fout.flush();
@@ -130,7 +130,7 @@ def sortxml(words):
 
 def realtime(oldtime):
     """docstring for realtimereturn real time in hour,minute,second format"""
-    oldtime=oldtime/100;
+    oldtime=float(oldtime)/100;
     hour=int(oldtime/3600);
     if hour<10:
         hourt='0'+str(hour);
