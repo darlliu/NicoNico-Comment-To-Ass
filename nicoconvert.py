@@ -21,8 +21,8 @@ Title:NicoScript\n\
 Original Script: NicoNico or else\n\
 ScriptType: v4.00\n\
 Collisions: Normal\n\
-PlayResX: 1000\n\
-PlayResY: 680\n\
+PlayResX: 640\n\
+PlayResY: 360\n\
 PlayDepth: 32\n\
 Timer: 100.0000\n\
 WrapStyle: 2\n\n\n"
@@ -31,16 +31,16 @@ WrapStyle: 2\n\n\n"
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColor, BackColour, Bold, \
 Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, \
 Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n\
-Style: Default,Kozuka Gothic Pro H,45,11861244,11861244,0,-2147483640,-1,0,0,0,100,100,1,0.00,1,1,0,10,30,30,30,1\n\
-Style: Static,Kozuka Gothic Pro H,45,11861244,11861244,0,-2147483640,-1,0,0,0,100,100,2,0.00,1,1,0,2,0,0,0,1\n\
-Style: Scroll,Kozuka Gothic Pro H,45,11861244,11861244,0,-2147483640,-1,0,0,0,100,100,2,0.00,1,1,0,2,0,0,0,1\n\n\n\
+Style: Default, Meiryo Bold,80,11861244,11861244,0,-2147483640,-1,0,0,0,100,100,1,0.00,1,1,0,10,30,30,30,1\n\
+Style: Static,Meiryo Bold,80,11861244,11861244,0,-2147483640,-1,0,0,0,100,100,2,0.00,1,1,0,2,0,0,0,1\n\
+Style: Scroll,Meiryo Bold,80,11861244,11861244,0,-2147483640,-1,0,0,0,100,100,2,0.00,1,1,0,2,0,0,0,1\n\n\n\
 "
     fout.write(intro);
     intro=u"[Events]\n\
 Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
     fout.write(intro);
     intro=u"\nDialogue: Marked=0,"
-    middle=u"Scroll,BiliBili1,0000,0000,0000,,{\\a6\\move(1150, ";
+    middle=u"Scroll,NicoChu,0000,0000,0000,,{\\a6\\move(1150, ";
     end=u")\c&HFFFFFF\\fs25}";#event string backbone
     pos=1;
     told=data[0][0]-200;
@@ -51,11 +51,11 @@ Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         t1=realtime(tnow);
         t2=realtime(tnext);
         text=data[i][-1];#grab text
-        if (pos>640 or tnow>told+400):
+        if (pos>320 or tnow>told+400):
             told+=400;
             pos=1;
         fout.write(intro+unicode(t1)+u","+unicode(t2)+u","+middle+unicode(str(pos))+u", 0 , "+unicode(str(pos))+end);
-        pos+=30;
+        pos+=20;
         fout.write(text);
         fout.writelines(u'\n')
     fout.flush();
@@ -141,7 +141,7 @@ def realtime(oldtime):
         minutest='0'+str(minutes);
     else:
         minutest=str(minutes);
-    seconds=float(oldtime-hour*3600-minutes*60);
+    seconds=round(float(oldtime-hour*3600-minutes*60),2);
     if seconds<10:
         secondst='0'+str(seconds);
     else:
